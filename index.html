@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="ar">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="text.css">
+
+  <title>Fox GPT</title>
+  <link rel="shortcut icon" type="image/png" href="logoo.png">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@200;300;400;500;600;700;800;900;1000&display=swap" rel="stylesheet">
+
+  
+  
+</head>
+
+<body>
+  <!-- <button id="recordButton" class="recordButton"></button>
+  <p id="output"></p>
+  <div id="transcriptOutput" ></div> -->
+
+
+  <button id="recordButton" class="recordButton"></button>
+        <div id="output"  class="transcriptOutput"></div>
+  <script>
+transcriptOutput=document.textContent  </script>
+ 
+  <script src="text.js"></script>
+
+  <!-- <div class="footer">
+    <hr class="horizontal-line"> خط أفقي  
+    <a href="https://www.facebook.com/mp11hs" target="_blank" style="font-family: cursive; text-decoration: none; font-size:200% ; height: 20%; width: 20%;"> <img  src="../my_porject_css/image/facebook.png" style="margin-left: 0.5em;"> facebook</a>
+    <a href="https://api.whatsapp.com/send?phone=+962787227970" target="_blank" style="margin-left:74%;font-family: cursive; text-decoration: none; font-size:200% ; height: 20%; width: 20%; margin: tob 1em;" >whatsapp <img  src="../my_porject_css/image/whatsappjpg.jpg" style="margin-right: 0.5em; height: 60%; margin-top: 0.15em ;"></a>
+  </div> -->
+  <div class="title"  >Fox GPT</div>
+  <div class="so"></div>
+
+  <script>
+  const recordButton = document.getElementById('recordButton');
+  let isRecording = false;
+
+  function startRecording() {
+    // قم ببدء التسجيل هنا
+    isRecording = true;
+    recordButton.textContent = 'إيقاف التسجيل';
+  }
+
+  function stopRecording() {
+    // قم بإيقاف التسجيل هنا
+    isRecording = false;
+    recordButton.textContent = 'بدء التسجيل';
+  }
+
+  recordButton.addEventListener('click', () => {
+    if (isRecording) {
+      stopRecording();
+    } else {
+      startRecording();
+    }
+  });
+
+recognition.onresult = (event) => {
+  const transcript = event.results[0][0].transcript; // الحصول على النص المحول من الصوت
+  nnfe.value = transcript; // تخزين النص في المتغير بدلاً من عرضه في العنصر div
+};
+
+recognition.onend = () => {
+  if (!isRecording) {
+    recordButton.classList.remove('recording');
+  }
+};
+
+recordButton.addEventListener('click', (event) => {
+  event.stopPropagation();
+});
+
+recordButton.addEventListener('lclick', () => {
+  if (isRecording ) {
+    recognition.stop();
+    recordButton.classList.remove('recording');
+    isRecording = false;
+  }
+});
+ 
+  </script>
+</body>
+<script src="text.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/axios/1.4.0/axios.min.js"></script>
+
+</html>
